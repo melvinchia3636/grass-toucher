@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unlock Reason</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 100vw; height: 100vh; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: var(--vscode-sideBar-background);
+      font-family: var(--vscode-font-family);
+      color: var(--vscode-editor-foreground);
+      gap: 24px;
+      padding: 32px;
+    }
+    .icon { width: 80px; height: 80px; opacity: 0.9; }
+    .icon svg { width: 100%; height: 100%; }
+    h2 { font-size: 1.75rem; font-weight: 600; text-align: center; }
+    p { text-align: center; opacity: 0.6; max-width: 400px; line-height: 1.5; }
+    input {
+      width: 100%; max-width: 400px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 2px solid var(--vscode-input-border);
+      background: var(--vscode-input-background);
+      color: var(--vscode-input-foreground);
+      font-size: 1rem;
+      outline: none;
+    }
+    input:focus { border-color: var(--vscode-focusBorder); }
+    button {
+      padding: 12px 32px;
+      border: none;
+      border-radius: 8px;
+      background: var(--vscode-button-background);
+      color: var(--vscode-button-foreground);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:hover { background: var(--vscode-button-hoverBackground); }
+    .error { color: var(--vscode-errorForeground); font-size: 0.9rem; display: none; }
+  </style>
+</head>
+<body>
+  <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24"><path fill="#4ade80" d="M2 20v-2h5.75q-.55-2.125-2.087-3.662T2 12.25q.5-.125.988-.187T4 12q3.35 0 5.675 2.325T12 20zm12 0q0-1.05-.225-2.087t-.65-1.988q1.05-1.775 2.863-2.85T20 12q.525 0 1.013.063t.987.187q-2.125.55-3.65 2.088T16.25 18H22v2zm-2-5.975q0-1.625.6-3.05t1.65-2.513t2.463-1.737t3.012-.7q-1.4.875-2.45 2.15t-1.625 2.85q-1.1.525-2.012 1.288T12 14.025m-1.825-1.875q-.3-.225-.6-.425t-.625-.4q0-.15.025-.312T9 10.7q0-1.9-.6-3.6T6.7 4q1.65.675 2.863 1.937t1.862 2.913q-.45.75-.775 1.588t-.475 1.712"/></svg></div>
+  <h2>Why do you need to unlock?</h2>
+  <p>Your workspace is locked until {{endTime}}. Tell us why you need access.</p>
+  <input type="text" id="reason" placeholder="e.g. I need to fix a critical bug" autofocus />
+  <p class="error" id="error">Please enter a reason.</p>
+  <button id="submit">Submit</button>
+  <script>
+    const input = document.getElementById('reason');
+    const error = document.getElementById('error');
+    const submit = document.getElementById('submit');
+    submit.addEventListener('click', () => {
+      const reason = input.value.trim();
+      if (!reason) {
+        error.style.display = 'block';
+        return;
+      }
+      error.style.display = 'none';
+      const vscode = acquireVsCodeApi();
+      vscode.postMessage({ command: 'unlockReason', reason });
+    });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') submit.click();
+    });
+  </script>
+</body>
+</html>

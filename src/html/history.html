@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unlock History</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 100vw; min-height: 100vh;
+      background: var(--vscode-sideBar-background);
+      font-family: var(--vscode-font-family);
+      color: var(--vscode-editor-foreground);
+      padding: 24px;
+    }
+    h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--vscode-panel-border); }
+    th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.6; }
+    td { font-size: 0.9rem; }
+    td.path { font-family: monospace; font-size: 0.8rem; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .empty { text-align: center; padding: 48px; opacity: 0.4; }
+  </style>
+</head>
+<body>
+  <h1>Unlock History</h1>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Date &amp; Time</th><th>Workspace</th><th>Reason</th></tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <p class="empty" id="empty">No unlock records found.</p>
+  <script>
+    const vscode = acquireVsCodeApi();
+    vscode.postMessage({ command: 'getHistory' });
+    window.addEventListener('message', (event) => {
+      const msg = event.data;
+      if (msg.command === 'history') {
+        const rows = document.getElementById('rows');
+        const empty = document.getElementById('empty');
+        if (msg.data.length === 0) {
+          empty.style.display = 'block';
+          return;
+        }
+        empty.style.display = 'none';
+        rows.innerHTML = msg.data.map(r =>
+          `<tr><td>${r.id}</td><td>${new Date(r.timestamp).toLocaleString()}</td><td class="path">${r.workspace || '-'}</td><td>${r.reason}</td></tr>`
+        ).join('');
+      }
+    });
+  </script>
+</body>
+</html>

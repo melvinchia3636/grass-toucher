@@ -1,0 +1,77 @@
+{
+  "name": "grass-toucher",
+  "displayName": "grass-toucher",
+  "description": "An extension that force you to leave your workspace alone and go touch some grass",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.118.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "grass-toucher.unlock",
+        "title": "I need to work — Unlock Workspace"
+      },
+      {
+        "command": "grass-toucher.history",
+        "title": "View Unlock History"
+      }
+    ],
+    "configuration": {
+      "title": "Grass Toucher",
+      "properties": {
+        "grass-toucher.lockdown.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable workspace lockdown during the configured time window"
+        },
+        "grass-toucher.lockdown.startTime": {
+          "type": "string",
+          "default": "19:00",
+          "pattern": "^([01]\\d|2[0-3]):([0-5]\\d)$",
+          "description": "Lockdown start time in 24h format (HH:MM)"
+        },
+        "grass-toucher.lockdown.endTime": {
+          "type": "string",
+          "default": "21:00",
+          "pattern": "^([01]\\d|2[0-3]):([0-5]\\d)$",
+          "description": "Lockdown end time in 24h format (HH:MM)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/sql.js": "^1.4.11",
+    "@types/vscode": "^1.118.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.27.3",
+    "eslint": "^9.39.3",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.20",
+    "sql.js": "^1.14.1"
+  }
+}
