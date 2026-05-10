@@ -78,19 +78,17 @@ src/
 │   ├── unlock.html           # Unlock reason form
 │   └── history.html          # Unlock history table
 └── lib/
-    ├── state.ts              # Shared mutable state + createState helper
-    ├── scheduler.ts          # Time-window checking logic (dayjs)
-    ├── lockdown/
-    │   ├── index.ts          # checkAndApplyLockdown function
-    │   ├── locker.ts         # enterLockdown, exitLockdown, enforceLockdown
+    ├── core/
+    │   ├── locker.ts         # enterLockdown, exitLockdown, enforceLockdown, checkAndApplyLockdown
+    │   ├── scheduler.ts      # Time-window checking logic (dayjs)
     │   └── unlocker.ts       # Unlock flow (reason prompt + 3 confirmations)
-    ├── commands/
-    │   ├── index.ts          # registerAllCommands
-    │   ├── unlock.ts         # Unlock command registration
-    │   └── history.ts        # History command + webview
-    └── history/
-        ├── index.ts          # History module
-        └── database.ts       # SQLite database (sql.js)
+    ├── history/
+    │   ├── database.ts       # SQLite database (sql.js)
+    │   └── viewer.ts         # History command + webview
+    └── shared/
+        ├── config.ts         # LockdownConfig, getConfig, LOCKDOWN_VIEW_TYPE
+        ├── html.ts           # loadHtml template loader
+        └── state.ts          # Shared mutable state + createState helper
 ```
 
 ## 🔌 Schema

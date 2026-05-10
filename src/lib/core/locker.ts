@@ -85,9 +85,13 @@ export function checkAndApplyLockdown(): void {
 
   const inWindow = isInLockdownWindow(config);
 
-  if (inWindow) {
-    enterLockdown();
-  } else {
-    exitLockdown();
+  if (inWindow && !state.isUnlockedForSession) {
+    if (!state.isLocked) {
+      enterLockdown();
+    }
+  } else if (!inWindow) {
+    if (state.isLocked || state.isUnlockedForSession) {
+      exitLockdown();
+    }
   }
 }
