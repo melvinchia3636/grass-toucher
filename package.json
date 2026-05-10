@@ -1,19 +1,46 @@
 {
   "name": "grass-toucher",
   "displayName": "Grass Toucher",
-  "description": "An extension that force you to leave your workspace alone and go touch some grass",
+  "description": "A VS Code extension that locks your workspace during a configured time window, forcing you to take a break and touch some grass",
   "publisher": "Lifeforge",
+  "author": {
+    "name": "Melvin Chia",
+    "url": "https://github.com/melvinchia3636"
+  },
   "repository": {
-    "type": "github",
+    "type": "git",
     "url": "https://github.com/melvinchia3636/grass-toucher"
   },
-  "version": "0.0.1",
+  "bugs": {
+    "url": "https://github.com/melvinchia3636/grass-toucher/issues"
+  },
+  "homepage": "https://github.com/melvinchia3636/grass-toucher",
+  "qna": "https://github.com/melvinchia3636/grass-toucher/discussions",
+  "license": "MIT",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.118.0"
   },
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "productivity",
+    "break",
+    "health",
+    "wellness",
+    "lockdown",
+    "timer",
+    "focus",
+    "takabreak",
+    "touchgrass"
+  ],
+  "icon": "images/icon.png",
+  "markdown": "github",
+  "galleryBanner": {
+    "color": "#4ade80",
+    "theme": "dark"
+  },
   "main": "./dist/extension.js",
   "activationEvents": [
     "onStartupFinished"

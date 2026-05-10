@@ -31,7 +31,7 @@ async function main() {
     sourcesContent: false,
     platform: "node",
     outfile: "dist/extension.js",
-    external: ["vscode", "sql.js"],
+    external: ["vscode"],
     define: {
       HTML_DIR: JSON.stringify(path.join(__dirname, "dist", "html")),
     },
