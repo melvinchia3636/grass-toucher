@@ -1,6 +1,6 @@
 <center><h1 align="center">🌿 Grass Toucher</h1></center>
 
-<p align="center">A VS Code extension that forces you to leave your workspace alone and go touch some grass. No excuses, no bypass — just go outside.</p>
+<p align="center">A VS Code extension that forces you to leave your workspace alone and go touch some grass.
 
 > [!NOTE]
 > **On Supervised Vibe Coding**
@@ -8,7 +8,7 @@
 
 ## 🤔 The Problem
 
-It's 11 PM. You've been "fixing one more bug" for the last four hours. Your eyes are dry, your neck hurts, and your dinner went cold two hours ago. You know you should stop, but there's always one more thing. The problem isn't that you don't know when to stop — it's that your tools don't stop you.
+It's 11 PM. You've been "fixing one more bug" for the last four hours. Your eyes are dry, your neck hurts, and your dinner went cold two hours ago. You know you should stop, but there's always one more thing. The problem isn't that you don't know when to stop - it's that your tools don't stop you.
 
 ## ✅ The Solution
 
@@ -25,17 +25,13 @@ A VS Code extension that locks your entire workspace during a configured time wi
 
 ## 🖥 Screenshots
 
-*(Screenshots coming soon)*
+<img width="49%" alt="image" src="https://github.com/user-attachments/assets/296a41d8-e2d2-4565-9712-c45a39cd0e02" />
+<img width="49%" alt="image" src="https://github.com/user-attachments/assets/9b078409-7911-4079-8784-1adcf1dc0a88" />
+
 
 ## 🔬 Technologies Used
 
 ![skills](https://img.shields.io/badge/-TYPESCRIPT-FF0000?style=for-the-badge&logo=typescript&logoColor=white&color=blue)
-![skills](https://img.shields.io/badge/-VSCODE-FF0000?style=for-the-badge&logo=visualstudiocode&logoColor=white&color=007ACC)
-![skills](https://img.shields.io/badge/-SQL.JS-FF0000?style=for-the-badge&logo=sqlite&logoColor=white&color=003B57)
-![skills](https://img.shields.io/badge/-DAY.JS-FF0000?style=for-the-badge&logo=javascript&logoColor=white&color=FFC933)
-
-**Runtime:** TypeScript, VS Code Extension API, sql.js (SQLite via WebAssembly), dayjs  
-**Build:** esbuild, pnpm
 
 ## ⌨️ Setup
 
@@ -97,9 +93,7 @@ src/
         └── database.ts       # SQLite database (sql.js)
 ```
 
-## 🔌 API
-
-This is a VS Code extension — no external API. All data is stored locally via sql.js in VS Code's global storage directory.
+## 🔌 Schema
 
 ### Unlock Log Schema
 
@@ -117,8 +111,6 @@ All core functionality is complete. The extension locks, unlocks with accountabi
 ## 🙏 Credits
 
 - **[OpenCode](https://opencode.ai)** — Assisted with construction of the extension architecture and implementation
-- **sql.js** — SQLite compiled to WebAssembly, enabling local persistence without native dependencies
-- **dayjs** — Lightweight date library for time-window calculations
 
 ## 📄 License
 
