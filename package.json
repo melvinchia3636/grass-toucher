@@ -1,7 +1,12 @@
 {
   "name": "grass-toucher",
-  "displayName": "grass-toucher",
+  "displayName": "Grass Toucher",
   "description": "An extension that force you to leave your workspace alone and go touch some grass",
+  "publisher": "Lifeforge",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/melvinchia3636/grass-toucher"
+  },
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.118.0"
@@ -64,6 +69,7 @@
     "@types/vscode": "^1.118.0",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.9.1",
     "esbuild": "^0.27.3",
     "eslint": "^9.39.3",
     "npm-run-all": "^4.1.5",
